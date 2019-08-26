@@ -1,0 +1,11 @@
+.letters li {
+    width: 24px;
+    height: 24px;
+    background-color: #000;
+    display: inline-block;
+    margin: 5px;
+}
+
+.letters li.revealed {
+    background-color: #fff;
+}
