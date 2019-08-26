@@ -1,11 +1,61 @@
-.letters li {
-    width: 24px;
-    height: 24px;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'VT323', monospace;
     background-color: #000;
+    color: rgb(81, 255, 0);
+}
+
+h1 {
+    text-align: center;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+}
+
+.main .letters {
+    text-align: center;
+    width: 100%;
+    margin-top: 150px;
+}
+
+.letters li {
+    margin: auto;
+    font-size: 30px;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(81, 255, 0);
+    color: rgb(81, 255, 0);
     display: inline-block;
     margin: 5px;
+    padding: 4px;
 }
 
 .letters li.revealed {
-    background-color: #fff;
+    background-color: #000;
+    color: rgb(81, 255, 0);
+    border: 1px solid rgb(81, 255, 0);
+}
+
+.tried_letters {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.tried_letters li {
+    text-align: center;
+    font-size: 30px;
+    padding: 4px;
+    border: 1px solid rgb(81, 255, 0);
+    color: rgb(81, 255, 0);
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 5px;
 }
