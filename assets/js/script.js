@@ -56,12 +56,22 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
-function terminal_log(message) {
-    var node = document.createElement('li');
-    var terminal = document.querySelector('.terminal');
-    node.innerHTML = message;
-    terminal.appendChild(node);
-    terminal.scrollTop = terminal.scrollHeight;
+var Terminal = {
+    log: function(message) {
+        var node = document.createElement('li');
+        var terminal = document.querySelector('.terminal');
+        node.innerHTML = message;
+        terminal.appendChild(node);
+        terminal.scrollTop = terminal.scrollHeight;
+    },
+    clear: function() {
+        var terminalContainer = document.querySelector('.terminal');
+        var child = terminalContainer.lastElementChild;  
+        while (child) { 
+            terminalContainer.removeChild(child); 
+            child = terminalContainer.lastElementChild; 
+        } 
+    }
 }
 
 var WordGame = {
@@ -83,8 +93,8 @@ var WordGame = {
         this.tries = 10;
         // begin
         this.theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-        terminal_log('Type a character to attempt to crack');
-        terminal_log(`You have ${this.tries} failed attempts remaining`);
+        Terminal.log('Type a character to attempt to crack');
+        Terminal.log(`You have ${this.tries} failed attempts remaining`);
         
         for (var i=0; i<this.theWord.length; i++) {
             var node = document.createElement("li");
@@ -94,20 +104,20 @@ var WordGame = {
     },
     lose: function() {
         this.game_state = -1;
-        terminal_log('&#x2620;YOU FAIL!&#x2620;');
+        Terminal.log('&#x2620;YOU FAIL!&#x2620;');
     },
     win: function() {
         this.game_state = 1;
-        terminal_log('YOU HACKED THE GIBSON!');
+        Terminal.log('YOU HACKED THE GIBSON!');
         document.videoPlayer.playVideo();
-        terminal_log('Press any key to play again');
+        Terminal.log('Press any key to play again');
         this.wins++;
     },
     check_letter: function(letter) {
         var letterContainer = document.querySelector('.letters');
         if (this.triedLetters.indexOf(letter) == -1) {
             this.triedLetters.push(letter);
-            terminal_log(`Trying character: '${letter}'`);
+            Terminal.log(`Trying character: '${letter}'`);
             var found_count = 0;
             for (i=0; i<this.theWord.length;i++) {
                 var letterNode = letterContainer.childNodes[i+1];
@@ -126,21 +136,21 @@ var WordGame = {
                 }
             } 
             if (found_count) {
-                terminal_log(`hash for ${letter} found ${found_count} time${found_count>1?'s':''}`);
+                Terminal.log(`hash for ${letter} found ${found_count} time${found_count>1?'s':''}`);
                 if (!document.querySelector('.letters li:not(.cracked)')) {
                     this.win();
                 }
             } else {
-                terminal_log('Pattern not found.');
+                Terminal.log('Pattern not found.');
                 this.tries--;
                 if (this.tries == 0) {
                     this.lose();
                 } else {
-                    terminal_log(`You have ${this.tries} failed attempt${this.tries>1?'s':''} remaining.`);
+                    Terminal.log(`You have ${this.tries} failed attempt${this.tries>1?'s':''} remaining.`);
                 }
             }
         } else {
-            terminal_log('Character already cracked');
+            Terminal.log('Character already cracked');
         }
     }
 };
@@ -153,14 +163,14 @@ document.addEventListener('keydown', (e) => {
             case 'Shift':
                 break;
             case '?':
-                terminal_log(`Characters tried: ${triedLetters.join()}`);
+                Terminal.log(`Characters tried: ${triedLetters.join()}`);
                 break;
             default:
                 rx = new RegExp(/^[a-z]$/);
                 if(e.key.match(rx)) {
                     WordGame.check_letter(e.key);
                 } else {
-                    terminal_log('Not a valid character');
+                    Terminal.log('Not a valid character');
                 }
         } 
     } else {
