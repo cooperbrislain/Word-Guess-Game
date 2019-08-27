@@ -44,18 +44,6 @@ var difficulties = [
         'min_length' : 8
     }
 ]
-var WordGame = {
-    theWord,
-    start: function() {
-        this.theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-    },
-    lose: function() {
-
-    },
-    win: function() {
-
-    }
-};
 
 function terminal_log(message) {
     var node = document.createElement('li');
@@ -65,14 +53,36 @@ function terminal_log(message) {
     terminal.scrollTop = terminal.scrollHeight;
 }
 
-for (var i=0; i<theWord.length; i++) {
-    var node = document.createElement("li");
-    node.innerHTML = '&nbsp;';
-    document.querySelector('.letters').appendChild(node);
-}
+var WordGame = {
+    theWord,
+    tries,
+    start: function() {
+        // initialize
+        var letterContainer = document.querySelector('.letters');
+        var child = letterContainer.lastElementChild;  
+        while (child) { 
+            e.removeChild(child); 
+            child = letterContainer.lastElementChild; 
+        } 
+        this.tries = 10;
+        // begin
+        this.theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+        terminal_log('Type a character to attempt to crack');
+        terminal_log(`You have ${this.tries} failed attempts remaining`);
+        
+        for (var i=0; i<this.theWord.length; i++) {
+            var node = document.createElement("li");
+            node.innerHTML = '&nbsp;';
+            letterContainer.appendChild(node);
+        }
+    },
+    lose: function() {
 
-terminal_log('Type a character to attempt to crack');
-terminal_log(`You have ${tries} failed attempts remaining`);
+    },
+    win: function() {
+
+    }
+};
 
 document.addEventListener('keydown', (e) => {
     console.log(e.key);
