@@ -23,7 +23,10 @@ a:hover {
 
 .tooltip {
     position: absolute;
+    width: 125px;
+    padding: 10px;
     z-index: 2;
+    border: 1px solid rgb(186, 255, 154);
 }
 
 .main {
@@ -72,4 +75,12 @@ a:hover {
     height: 40px;
     display: inline-block;
     margin: 5px;
+}
+
+.tries_display {
+    text-align: right;
+    position: fixed;
+    bottom: 5px;
+    right: 20px;
+    color: rgb(81, 255, 0);
 }

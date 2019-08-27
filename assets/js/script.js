@@ -2,8 +2,8 @@ var wordsArray = [
     'hypernormalization',
     'snowcrash',
     'cryptonomicon',
-    'stochastic',
-    'gaslighting'
+    'alllowercase',
+    
 ];
 
 var theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
@@ -28,7 +28,7 @@ document.addEventListener('keydown', (e) => {
         if (triedLetters.indexOf(e.key) == -1) {
             triedLetters.push(e.key);
             var tries_remaining = tries-triedLetters.length;
-            document.querySelector('.tries_display').innerHTML = (tries_remaining? `You have ${tries_remaining} guesses remaining.` : 'You have failed.');
+            document.querySelector('.tries_display').innerHTML = (tries_remaining? `You have ${tries_remaining} guess${tries_remaining>1?'es':''} remaining.` : 'You have failed.');
             var node = document.createElement('li');
             node.innerHTML = e.key.toUpperCase();
             document.querySelector('.tried_letters').appendChild(node);
@@ -46,8 +46,9 @@ document.addEventListener('keydown', (e) => {
 
 document.querySelector('.asterisk').addEventListener('mouseenter', e => {
     var theToolTip = document.querySelector('.tooltip');
-    theToolTip.style.left = e.clientX;
-    theToolTip.style.top = e.clientY;
+    console.log(e.clientX, e.clientY);
+    theToolTip.style.left = e.clientX+'px';
+    theToolTip.style.top = e.clientY+'px';
     theToolTip.style.display = 'block';
 });
 
