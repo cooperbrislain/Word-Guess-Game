@@ -23,9 +23,9 @@ var wordsArray = [
     'nakamoto'
 ];
 
-
 var triedLetters = [];
 var tries = 10;
+var videoPlayer;
 
 var difficulties = [
     {
@@ -44,6 +44,17 @@ var difficulties = [
         'min_length' : 8
     }
 ]
+
+function onYouTubeIframeAPIReady() {
+    document.videoPlayer = new YT.Player('video-placeholder', {
+        width: 600,
+        height: 400,
+        videoId: 'OFr74zI1LBM',
+        events: {
+            onReady: function() { }
+        }
+    });
+}
 
 function terminal_log(message) {
     var node = document.createElement('li');
@@ -86,8 +97,9 @@ var WordGame = {
         terminal_log('&#x2620;YOU FAIL!&#x2620;');
     },
     win: function() {
-        this.game_state = 1
+        this.game_state = 1;
         terminal_log('YOU HACKED THE GIBSON!');
+        document.videoPlayer.playVideo();
         terminal_log('Press any key to play again');
         this.wins++;
     },

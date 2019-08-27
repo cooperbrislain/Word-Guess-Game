@@ -63,16 +63,17 @@ a:hover {
 
 .letters li {
     margin: auto;
-    font-size: 30px;
-    padding: 10px;
-    width: 40px;
-    height: 40px;
+    font-size: 55px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     background-color: rgb(81, 255, 0);
     color: #000;
     display: inline-block;
     margin: 5px;
     padding: 4px;
+    vertical-align: baseline;
+    line-height: 45px;
 }
 
 .letters li.cracked {
