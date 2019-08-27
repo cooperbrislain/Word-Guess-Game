@@ -23,7 +23,7 @@ var wordsArray = [
     'nakamoto'
 ];
 
-var theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+
 var triedLetters = [];
 var tries = 10;
 
@@ -44,6 +44,18 @@ var difficulties = [
         'min_length' : 8
     }
 ]
+var WordGame = {
+    theWord,
+    start: function() {
+        this.theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+    },
+    lose: function() {
+
+    },
+    win: function() {
+
+    }
+};
 
 function terminal_log(message) {
     var node = document.createElement('li');
@@ -52,7 +64,6 @@ function terminal_log(message) {
     terminal.appendChild(node);
     terminal.scrollTop = terminal.scrollHeight;
 }
-console.log(theWord);
 
 for (var i=0; i<theWord.length; i++) {
     var node = document.createElement("li");
