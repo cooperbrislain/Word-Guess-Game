@@ -43,3 +43,14 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+document.querySelector('.asterisk').addEventListener('mouseenter', e => {
+    var theToolTip = document.querySelector('.tooltip');
+    theToolTip.style.left = e.clientX;
+    theToolTip.style.top = e.clientY;
+    theToolTip.style.display = 'block';
+});
+
+document.querySelector('.asterisk').addEventListener('mouseleave', e => {
+    document.querySelector('.tooltip').style.display = 'none';
+});

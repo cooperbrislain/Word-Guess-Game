@@ -12,6 +12,20 @@ h1 {
     text-align: center;
 }
 
+a:link, a:active, a:visited {
+    color: rgb(81, 255, 0);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(186, 255, 154);
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 2;
+}
+
 .main {
     width: 100vw;
     height: 100vh;
