@@ -14,7 +14,7 @@ console.log(theWord);
 
 for (var i=0; i<theWord.length; i++) {
     var node = document.createElement("li");
-    node.innerHTML = theWord[i].toUpperCase();
+    node.innerHTML = '&nbsp;';
     document.querySelector('.letters').appendChild(node);
 }
 
@@ -34,8 +34,10 @@ document.addEventListener('keydown', (e) => {
             document.querySelector('.tried_letters').appendChild(node);
             var node = document.createElement("li");
             for (i=0; i<theWord.length;i++) {
+                var letterNode = document.querySelector('.letters').childNodes[i+1];
+                letterNode.innerHTML = '*';
                 if (theWord[i] == e.key) {
-                    document.querySelector('.letters').childNodes[i+1].classList.add('revealed');
+                    letterNode.innerHTML = theWord[i].toUpperCase();
                 }
             }  
         } else {
