@@ -35,37 +35,44 @@ terminal_log(`You have ${tries} failed attempts remaining`);
 
 document.addEventListener('keydown', (e) => {
     console.log(e.key);
-    rx = new RegExp(/^[a-z]$/);
-    if(e.key.match(rx)) {
-        if (triedLetters.indexOf(e.key) == -1) {
-            triedLetters.push(e.key);
-            terminal_log(`Trying character: '${e.key}'`);
-            var found_count = 0;
-            for (i=0; i<theWord.length;i++) {
-                var letterNode = document.querySelector('.letters').childNodes[i+1];
-                letterNode.innerHTML = '*';
-                if (theWord[i] == e.key) {
-                    found_count++;
-                    letterNode.innerHTML = theWord[i].toUpperCase();
-                }
-            } 
-            if (found_count) {
-                terminal_log(`hash for ${e.key} found ${found_count} time${found_count>1?'s':''}`);
-            } else {
-                terminal_log('Pattern not found.');
-                tries--;
-                if (tries == 0) {
-                    terminal_log('YOU FAIL');
+    switch (e.key) {
+        case '?':
+            terminal_log(`Characters tried: ${triedLetters.join()}`);
+            break;
+        default:
+            rx = new RegExp(/^[a-z]$/);
+            if(e.key.match(rx)) {
+                if (triedLetters.indexOf(e.key) == -1) {
+                    triedLetters.push(e.key);
+                    terminal_log(`Trying character: '${e.key}'`);
+                    var found_count = 0;
+                    for (i=0; i<theWord.length;i++) {
+                        var letterNode = document.querySelector('.letters').childNodes[i+1];
+                        letterNode.innerHTML = '*';
+                        if (theWord[i] == e.key) {
+                            found_count++;
+                            letterNode.innerHTML = theWord[i].toUpperCase();
+                        }
+                    } 
+                    if (found_count) {
+                        terminal_log(`hash for ${e.key} found ${found_count} time${found_count>1?'s':''}`);
+                    } else {
+                        terminal_log('Pattern not found.');
+                        tries--;
+                        if (tries == 0) {
+                            terminal_log('YOU FAIL');
+                        } else {
+                            terminal_log(`You have ${tries} failed attempt${tries>1?'s':''} remaining.`);
+                        }
+                    }
                 } else {
-                    terminal_log(`You have ${tries} failed attempt${tries>1?'s':''} remaining.`);
+                    terminal_log('Character already cracked');
                 }
+            } else {
+                terminal_log('Not a valid character');
             }
-        } else {
-            terminal_log('Character already cracked');
-        }
-    } else {
-        terminal_log('Not a valid character');
     }
+    
 });
 
 document.querySelector('.asterisk').addEventListener('mouseenter', e => {
