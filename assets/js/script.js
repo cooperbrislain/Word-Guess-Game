@@ -88,7 +88,7 @@ var WordGame = {
         
         for (var i=0; i<this.theWord.length; i++) {
             var node = document.createElement("li");
-            node.innerHTML = '&nbsp;';
+            node.innerHTML = '*';
             letterContainer.appendChild(node);
         }
     },
@@ -115,7 +115,7 @@ var WordGame = {
                     letterNode.innerHTML = '*';
                     setTimeout(function(letterNode) {
                         if(!letterNode.classList.contains('cracked')) {
-                            letterNode.innerHTML = '&nbsp;';
+                            letterNode.innerHTML = '*';
                         }
                     },250,letterNode);
                 }
