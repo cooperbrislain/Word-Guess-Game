@@ -16,11 +16,11 @@ var wordsArray = [
     'mockingbird',
     'valis',
     'pravda',
-    'torchwood',
     'oligarchy',
     'cambridge',
     'blackwater',
-    'nakamoto'
+    'nakamoto',
+    'paperclip'
 ];
 
 var triedLetters = [];
@@ -94,6 +94,10 @@ var WordGame = {
         // begin
         this.theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
         Terminal.log('Type a character to attempt to crack');
+        if (this.wins) {
+            Terminal.log(`The Gibson has been breached ${this.wins} times today`);
+        }
+        
         Terminal.log(`You have ${this.tries} failed attempts remaining`);
         
         for (var i=0; i<this.theWord.length; i++) {

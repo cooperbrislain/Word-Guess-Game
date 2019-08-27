@@ -17,6 +17,8 @@ body {
 
 footer {
     position: fixed;
+    margin: 0px;
+    padding: 0px;
     bottom: 0px;
     width: 100%;
     background-color: rgba(0,0,0,0.75);
@@ -63,7 +65,7 @@ a:hover {
 .letters {
     text-align: center;
     width: 100%;
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
 .letters li {
@@ -91,8 +93,14 @@ a:hover {
 
 .terminal {
     list-style-type: none;
+    margin: 0px;
     height: 150px;
     overflow: scroll;
+    border-top: 5px solid rgb(81, 255, 0);
+}
+
+.terminal li {
+    line-height: 20px;
 }
 
 .terminal li:before {
