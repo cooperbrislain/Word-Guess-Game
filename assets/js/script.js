@@ -52,10 +52,18 @@ document.addEventListener('keydown', (e) => {
                     var found_count = 0;
                     for (i=0; i<theWord.length;i++) {
                         var letterNode = document.querySelector('.letters').childNodes[i+1];
-                        letterNode.innerHTML = '*';
+                        if (!letterNode.classList.contains('cracked')) {
+                            letterNode.innerHTML = '*';
+                            setTimeout(function(letterNode) {
+                                if(!letterNode.classList.contains('cracked')) {
+                                    letterNode.innerHTML = '&nbsp;';
+                                }
+                            },250,letterNode);
+                        }
                         if (theWord[i] == e.key) {
                             found_count++;
                             letterNode.innerHTML = theWord[i].toUpperCase();
+                            letterNode.classList.add('cracked');
                         }
                     } 
                     if (found_count) {

@@ -67,13 +67,13 @@ a:hover {
     height: 40px;
     text-align: center;
     background-color: rgb(81, 255, 0);
-    color: rgb(81, 255, 0);
+    color: #000;
     display: inline-block;
     margin: 5px;
     padding: 4px;
 }
 
-.letters li.revealed {
+.letters li.cracked {
     color: rgb(81, 255, 0);
     border: 1px solid rgb(81, 255, 0);
     background-color: rgba(0,0,0,0.75);
