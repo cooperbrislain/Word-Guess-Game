@@ -3,13 +3,25 @@ var wordsArray = [
     'snowcrash',
     'cryptonomicon',
     'alllowercase',
-    
+    'laputinmachine',
+    'panopticon',
+    'polybius',
+    'god',
+    'jesus',
+    'password',
+    'nimda',
+    '123456'
 ];
 
 var theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
 var triedLetters = [];
 var tries = 10;
 
+function terminal_log(message) {
+    var node = document.createElement('li');
+    node.innerHTML = message;
+    document.querySelector('.terminal').appendChild(node);
+}
 console.log(theWord);
 
 for (var i=0; i<theWord.length; i++) {
@@ -18,31 +30,41 @@ for (var i=0; i<theWord.length; i++) {
     document.querySelector('.letters').appendChild(node);
 }
 
-document.querySelector('.tries_display').innerHTML = `You have ${tries} guesses.`;
+terminal_log('Type a character to attempt to crack');
+terminal_log(`You have ${tries} failed attempts remaining`);
 
 document.addEventListener('keydown', (e) => {
     console.log(e.key);
     rx = new RegExp(/^[a-z]$/);
     if(e.key.match(rx)) {
-        console.log('alpha');
         if (triedLetters.indexOf(e.key) == -1) {
             triedLetters.push(e.key);
-            var tries_remaining = tries-triedLetters.length;
-            document.querySelector('.tries_display').innerHTML = (tries_remaining? `You have ${tries_remaining} guess${tries_remaining>1?'es':''} remaining.` : 'You have failed.');
-            var node = document.createElement('li');
-            node.innerHTML = e.key.toUpperCase();
-            document.querySelector('.tried_letters').appendChild(node);
-            var node = document.createElement("li");
+            terminal_log(`Trying character: '${e.key}'`);
+            var found_count = 0;
             for (i=0; i<theWord.length;i++) {
                 var letterNode = document.querySelector('.letters').childNodes[i+1];
                 letterNode.innerHTML = '*';
                 if (theWord[i] == e.key) {
+                    found_count++;
                     letterNode.innerHTML = theWord[i].toUpperCase();
                 }
-            }  
+            } 
+            if (found_count) {
+                terminal_log(`hash for ${e.key} found ${found_count} time${found_count>1?'s':''}`);
+            } else {
+                terminal_log('Pattern not found.');
+                tries--;
+                if (tries == 0) {
+                    terminal_log('YOU FAIL');
+                } else {
+                    terminal_log(`You have ${tries} failed attempt${tries>1?'s':''} remaining.`);
+                }
+            }
         } else {
-            console.log('not alpha');
+            terminal_log('Character already cracked');
         }
+    } else {
+        terminal_log('Not a valid character');
     }
 });
 

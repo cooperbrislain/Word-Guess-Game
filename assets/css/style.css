@@ -11,6 +11,13 @@ body {
     background-position: center;
 }
 
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.75);
+}
+
 h1 {
     text-align: center;
 }
@@ -18,7 +25,10 @@ h1 {
 p {
     text-align: center;
     margin: auto;
-    width: 300px;
+    width: 450px;
+    background-color: rgb(0,0,0,0.75);
+    padding: 10px;
+    border: 1px solid rgb(81, 255, 0);
 }
 
 a:link, a:active, a:visited {
@@ -43,7 +53,7 @@ a:hover {
     height: 100vh;
 }
 
-.main .letters {
+.letters {
     text-align: center;
     width: 100%;
     margin-top: 150px;
@@ -55,6 +65,7 @@ a:hover {
     padding: 10px;
     width: 40px;
     height: 40px;
+    text-align: center;
     background-color: rgb(81, 255, 0);
     color: rgb(81, 255, 0);
     display: inline-block;
@@ -63,33 +74,19 @@ a:hover {
 }
 
 .letters li.revealed {
-    background-color: #000;
     color: rgb(81, 255, 0);
     border: 1px solid rgb(81, 255, 0);
+    background-color: rgba(0,0,0,0.75);
 }
 
-.tried_letters {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+.terminal {
+    list-style-type: none;
 }
 
-.tried_letters li {
-    text-align: center;
-    font-size: 30px;
-    padding: 4px;
-    border: 1px solid rgb(81, 255, 0);
-    color: rgb(81, 255, 0);
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    margin: 5px;
-}
-
-.tries_display {
-    text-align: right;
-    position: fixed;
-    bottom: 5px;
-    right: 20px;
-    color: rgb(81, 255, 0);
+.terminal li:before {
+    content: "\25b6";
+    font-size: 10px;
+    position: relative;
+    bottom: 3px;
+    margin-right: 10px;
 }
