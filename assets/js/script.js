@@ -54,7 +54,7 @@ function terminal_log(message) {
 }
 
 var WordGame = {
-    theWord,
+    theWord: '',
     tries: 10,
     triedLetters: [],
     start: function() {
@@ -62,7 +62,7 @@ var WordGame = {
         var letterContainer = document.querySelector('.letters');
         var child = letterContainer.lastElementChild;  
         while (child) { 
-            e.removeChild(child); 
+            letterContainer.removeChild(child); 
             child = letterContainer.lastElementChild; 
         } 
         this.tries = 10;
@@ -99,14 +99,14 @@ var WordGame = {
                         }
                     },250,letterNode);
                 }
-                if (this.theWord[i] == e.key) {
+                if (this.theWord[i] == letter) {
                     found_count++;
-                    letterNode.innerHTML = theWord[i].toUpperCase();
+                    letterNode.innerHTML = this.theWord[i].toUpperCase();
                     letterNode.classList.add('cracked');
                 }
             } 
             if (found_count) {
-                terminal_log(`hash for ${e.key} found ${found_count} time${found_count>1?'s':''}`);
+                terminal_log(`hash for ${letter} found ${found_count} time${found_count>1?'s':''}`);
                 if (!document.querySelector('.letters li:not(.cracked)')) {
                     terminal_log(`YOU HACKED THE GIBSON!`);
                 }
