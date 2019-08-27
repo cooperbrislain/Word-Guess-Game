@@ -10,12 +10,32 @@ var wordsArray = [
     'jesus',
     'password',
     'nimda',
-    '123456'
+    '123456',
+    'deliverator',
+    'pizza'
 ];
 
 var theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
 var triedLetters = [];
 var tries = 10;
+
+var difficulties = [
+    {
+        'label' : 'Skript Kiddie',
+        'attempts' : 10,
+        'min_length' : 0
+    },
+    {
+        'label' : 'Hacker',
+        'attempts' : 8,
+        'min_length' : 6
+    },
+    {
+        'label' : '1337',
+        'attempts' : 5,
+        'min_length' : 8
+    }
+]
 
 function terminal_log(message) {
     var node = document.createElement('li');
