@@ -54,13 +54,15 @@ function terminal_log(message) {
 }
 
 var WordGame = {
+    game_state: 0,
     theWord: '',
     tries: 10,
     wins: 0,
     triedLetters: [],
     start: function() {
         // initialize
-        this.tried_letters = [];
+        this.game_state = 0;
+        this.triedLetters = [];
         var letterContainer = document.querySelector('.letters');
         var child = letterContainer.lastElementChild;  
         while (child) { 
@@ -80,9 +82,11 @@ var WordGame = {
         }
     },
     lose: function() {
-        terminal_log('YOU FAIL!');
+        this.game_state = -1;
+        terminal_log('&#x2620;YOU FAIL!&#x2620;');
     },
     win: function() {
+        this.game_state = 1
         terminal_log('YOU HACKED THE GIBSON!');
         terminal_log('Press any key to play again');
         this.wins++;
@@ -130,22 +134,26 @@ var WordGame = {
 };
 
 document.addEventListener('keydown', (e) => {
-    switch (e.key) {
-        case 'Enter':
-            break;  
-        case 'Shift':
-            break;
-        case '?':
-            terminal_log(`Characters tried: ${triedLetters.join()}`);
-            break;
-        default:
-            rx = new RegExp(/^[a-z]$/);
-            if(e.key.match(rx)) {
-                WordGame.check_letter(e.key);
-            } else {
-                terminal_log('Not a valid character');
-            }
-    } 
+    if (WordGame.game_state == 0) {
+        switch (e.key) {
+            case 'Enter':
+                break;  
+            case 'Shift':
+                break;
+            case '?':
+                terminal_log(`Characters tried: ${triedLetters.join()}`);
+                break;
+            default:
+                rx = new RegExp(/^[a-z]$/);
+                if(e.key.match(rx)) {
+                    WordGame.check_letter(e.key);
+                } else {
+                    terminal_log('Not a valid character');
+                }
+        } 
+    } else {
+        WordGame.start();
+    }
 });
 
 var tooltipTimeout; 
