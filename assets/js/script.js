@@ -141,8 +141,7 @@ document.addEventListener('keydown', (e) => {
             } else {
                 terminal_log('Not a valid character');
             }
-    }
-    
+    } 
 });
 
 var tooltipTimeout; 
@@ -161,3 +160,5 @@ document.querySelector('.asterisk').addEventListener('mouseleave', e => {
         document.querySelector('.tooltip').style.display = 'none';
     }, 500);
 });
+
+WordGame.start();
