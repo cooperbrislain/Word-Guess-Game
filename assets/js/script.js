@@ -56,9 +56,11 @@ function terminal_log(message) {
 var WordGame = {
     theWord: '',
     tries: 10,
+    wins: 0,
     triedLetters: [],
     start: function() {
         // initialize
+        this.tried_letters = [];
         var letterContainer = document.querySelector('.letters');
         var child = letterContainer.lastElementChild;  
         while (child) { 
@@ -78,10 +80,12 @@ var WordGame = {
         }
     },
     lose: function() {
-
+        terminal_log('YOU FAIL!');
     },
     win: function() {
-
+        terminal_log('YOU HACKED THE GIBSON!');
+        terminal_log('Press any key to play again');
+        this.wins++;
     },
     check_letter: function(letter) {
         var letterContainer = document.querySelector('.letters');
@@ -108,13 +112,13 @@ var WordGame = {
             if (found_count) {
                 terminal_log(`hash for ${letter} found ${found_count} time${found_count>1?'s':''}`);
                 if (!document.querySelector('.letters li:not(.cracked)')) {
-                    terminal_log(`YOU HACKED THE GIBSON!`);
+                    this.win();
                 }
             } else {
                 terminal_log('Pattern not found.');
                 this.tries--;
                 if (this.tries == 0) {
-                    terminal_log('YOU FAIL');
+                    this.lose();
                 } else {
                     terminal_log(`You have ${this.tries} failed attempt${this.tries>1?'s':''} remaining.`);
                 }
