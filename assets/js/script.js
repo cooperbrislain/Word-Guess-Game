@@ -8,12 +8,19 @@ var wordsArray = [
     'polybius',
     'god',
     'jesus',
+    'wormwood',
     'password',
     'nimda',
     'deliverator',
     'pizza',
     'mockingbird',
-    'valis'
+    'valis',
+    'pravda',
+    'torchwood',
+    'oligarchy',
+    'cambridge',
+    'blackwater',
+    'nakamoto'
 ];
 
 var theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
@@ -59,6 +66,8 @@ terminal_log(`You have ${tries} failed attempts remaining`);
 document.addEventListener('keydown', (e) => {
     console.log(e.key);
     switch (e.key) {
+        case 'Enter':
+            break;  
         case 'Shift':
             break;
         case '?':
@@ -89,6 +98,9 @@ document.addEventListener('keydown', (e) => {
                     } 
                     if (found_count) {
                         terminal_log(`hash for ${e.key} found ${found_count} time${found_count>1?'s':''}`);
+                        if (!document.querySelector('.letters li:not(.cracked)')) {
+                            terminal_log(`YOU HACKED THE GIBSON!`);
+                        }
                     } else {
                         terminal_log('Pattern not found.');
                         tries--;
