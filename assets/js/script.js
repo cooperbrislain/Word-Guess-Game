@@ -108,7 +108,10 @@ document.addEventListener('keydown', (e) => {
     
 });
 
+var tooltipTimeout; 
+
 document.querySelector('.asterisk').addEventListener('mouseenter', e => {
+    if (tooltipTimeout) clearTimeout(tooltipTimeout);
     var theToolTip = document.querySelector('.tooltip');
     console.log(e.clientX, e.clientY);
     theToolTip.style.left = e.clientX+'px';
@@ -117,5 +120,7 @@ document.querySelector('.asterisk').addEventListener('mouseenter', e => {
 });
 
 document.querySelector('.asterisk').addEventListener('mouseleave', e => {
-    document.querySelector('.tooltip').style.display = 'none';
+    tooltipTimeout = setTimeout(function() {
+        document.querySelector('.tooltip').style.display = 'none';
+    }, 500);
 });
