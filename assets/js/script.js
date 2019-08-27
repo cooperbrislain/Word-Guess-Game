@@ -10,9 +10,10 @@ var wordsArray = [
     'jesus',
     'password',
     'nimda',
-    '123456',
     'deliverator',
-    'pizza'
+    'pizza',
+    'mockingbird',
+    'valis'
 ];
 
 var theWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];

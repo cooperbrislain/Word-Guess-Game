@@ -20,6 +20,7 @@ footer {
 
 h1 {
     text-align: center;
+    text-shadow: 0px 0px 8px #b50ddf;
 }
 
 p {
@@ -42,9 +43,10 @@ a:hover {
 
 .tooltip {
     position: absolute;
-    width: 125px;
+    width: 200px;
     padding: 10px;
     z-index: 2;
+    background-color: rgb(0,0,0,0.75);
     border: 1px solid rgb(186, 255, 154);
 }
 
