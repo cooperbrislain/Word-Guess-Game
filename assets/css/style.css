@@ -81,6 +81,8 @@ a:hover {
 
 .terminal {
     list-style-type: none;
+    height: 150px;
+    overflow: scroll;
 }
 
 .terminal li:before {

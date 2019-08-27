@@ -19,8 +19,10 @@ var tries = 10;
 
 function terminal_log(message) {
     var node = document.createElement('li');
+    var terminal = document.querySelector('.terminal');
     node.innerHTML = message;
-    document.querySelector('.terminal').appendChild(node);
+    terminal.appendChild(node);
+    terminal.scrollTop = terminal.scrollHeight;
 }
 console.log(theWord);
 
@@ -36,6 +38,8 @@ terminal_log(`You have ${tries} failed attempts remaining`);
 document.addEventListener('keydown', (e) => {
     console.log(e.key);
     switch (e.key) {
+        case 'Shift':
+            break;
         case '?':
             terminal_log(`Characters tried: ${triedLetters.join()}`);
             break;
